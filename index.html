@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary ❤️</title>
+<style>
+body {
+  background: linear-gradient(to right, #ff9a9e, #fad0c4);
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+h1 {
+  color: #fff;
+  font-size: 3em;
+  margin-top: 0;
+}
+
+p {
+  color: #fff;
+  font-size: 1.5em;
+  margin: 10px 0 20px 0;
+}
+
+.mail-button {
+  background-color: #ff3f71;
+  border: none;
+  color: white;
+  padding: 15px 40px;
+  font-size: 1.2em;
+  border-radius: 30px;
+  cursor: pointer;
+  margin: 20px;
+  position: relative;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.mail-button:hover {
+  background-color: #ff6f91;
+  transform: scale(1.05);
+}
+
+.floating-message {
+  position: absolute;
+  font-size: 2em;
+  font-weight: bold;
+  color: #ff69b4;
+  text-shadow: 2px 2px 5px #000;
+  animation: floatUp 3s forwards;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateY(0px); }
+  100% { opacity: 0; transform: translateY(-150px) rotate(10deg); }
+}
+
+/* Hug section */
+#hugSection {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+#hugSection h1 {
+  font-size: 4em;
+  color: #ff3f71;
+}
+
+#hugSection p {
+  font-size: 2em;
+  color: #fff;
+  margin-top: 10px;
+}
+
+#hugSection img {
+  width: 200px;
+  margin-top: 30px;
+  animation: hugAnimation 2s infinite alternate;
+}
+
+@keyframes hugAnimation {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+</style>
+</head>
+<body>
+
+<!-- Main content -->
+<div id="mainContent">
+  <h1>Happy Anniversary Hubby!💋 ❤️</h1>
+  <p>💖 To the love of my life, you make every day magical 💖</p>
+  <p>You LOVE me! Yes Or No! No any chance for No..See the magic! 💕</p>
+
+  <button class="mail-button yes" id="yesButton">Yes 💋</button>
+  <button class="mail-button no" id="noButton">No 💖</button>
+</div>
+
+<!-- Hug section -->
+<div id="hugSection">
+  <h1>🤗 Big Hug for You! 🤗</h1>
+  <p>Forever yours ❤️💋</p>
+  <img src="https://www.pngkey.com/png/detail/0-1209_cartoon-loving-couple-hug-cartoon-couple-hug-png.png" alt="Cartoon Loving Couple Hug" alt="Hug Image">
+
+  <!-- Same Yes/No buttons below hug image -->
+  <div>
+    <button class="mail-button yes hugYes">Yes 💋</button>
+    <button class="mail-button no hugNo">No 💖</button>
+  </div>
+</div>
+
+<script>
+const messagesYes = [
+  "💖💋 I love you so much! 💖💋",
+  "❤️💋 Forever yours 💕💋",
+  "💌💖 My heart beats for you 💓💋",
+  "😘💖 Endless love for you 💕💋",
+  "💘💖 You make me complete 💋💖"
+];
+
+const messagesNo = [
+  "😅💋 Don't say no! 💌💖",
+  "❤️💖 Try again, love! 💕💋",
+  "💋💖 You know you love me! 💖💌",
+  "😘💖 Our love is forever 💌💖",
+  "💖💋 Just one Yes please! 💘💖"
+];
+
+function getRandomMessage(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function showFloatingMessage(message) {
+  const span = document.createElement('span');
+  span.className = 'floating-message';
+  span.innerText = message;
+  const x = Math.random() * (window.innerWidth - 200);
+  const y = Math.random() * (window.innerHeight - 50);
+  span.style.left = x + "px";
+  span.style.top = y + "px";
+  document.body.appendChild(span);
+  setTimeout(() => { span.remove(); }, 3000);
+}
+
+// Main content Yes button
+document.getElementById('yesButton').addEventListener('mouseenter', () => {
+  showFloatingMessage(getRandomMessage(messagesYes));
+});
+document.getElementById('yesButton').addEventListener('click', () => {
+  document.getElementById('mainContent').style.display = 'none';
+  document.getElementById('hugSection').style.display = 'flex';
+});
+
+// Main content No button
+const noBtn = document.getElementById('noButton');
+noBtn.addEventListener('mouseenter', () => {
+  showFloatingMessage(getRandomMessage(messagesNo));
+  const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+  const maxY = window.innerHeight - noBtn.offsetHeight - 20;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+  noBtn.style.position = 'absolute';
+  noBtn.style.left = x + 'px';
+  noBtn.style.top = y + 'px';
+});
+
+// Hug section buttons
+const hugYes = document.querySelector('.hugYes');
+const hugNo = document.querySelector('.hugNo');
+
+hugYes.addEventListener('mouseenter', () => {
+  showFloatingMessage(getRandomMessage(messagesYes));
+});
+hugYes.addEventListener('click', () => {
+  showFloatingMessage("💖💋 Forever yours! 💖💋");
+});
+
+hugNo.addEventListener('mouseenter', () => {
+  showFloatingMessage(getRandomMessage(messagesNo));
+  const maxX = window.innerWidth - hugNo.offsetWidth - 20;
+  const maxY = window.innerHeight - hugNo.offsetHeight - 20;
+  const x = Math.random() * maxX;
+  const y = Math.random() * maxY;
+  hugNo.style.position = 'absolute';
+  hugNo.style.left = x + 'px';
+  hugNo.style.top = y + 'px';
+});
+</script>
+
+</body>
+</html>
